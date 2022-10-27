@@ -36,10 +36,10 @@ md5sums=('28f25733959189474e4a90e290ea465f')
 
 build() {
   cd "molden$pkgver"
-  # Patch Makefile for surf utility to reflect 
-  # the replacement of missing makedepend 
+  # Patch Makefile for surf utility to reflect the replacement of missing
+  # makedepend
   sed -i 's/@.*makedepend.*$/@ \$(CC) \$(INCLUDE) -M \$(SRCS) \> makedep/' src/surf/Makefile
-  
+
   # Patch to compile with gfortran 10
   # Contributed by Panadestein on 5/31/2020
   sed -i 's/FFLAGS = -g ${AFLAG}/& -fallow-argument-mismatch/g' makefile
@@ -50,7 +50,6 @@ build() {
 package() {
   cd "molden$pkgver"
   install -t "$pkgdir/usr/bin/"  -Dm755 bin/{molden,gmolden,ambfor,ambmd,surf}
-  install -t "$pkgdir/usr/share/doc/$pkgname" -Dm755 doc/figures.ps.Z  doc/manual.ps.Z doc/manual.txt.Z  
-  install -t "$pkgdir/usr/share/licenses/$pkgname/" -Dm755 CopyRight COMMERCIAL_LICENSE REGISTER     
+  install -t "$pkgdir/usr/share/doc/$pkgname" -Dm755 doc/figures.ps.Z  doc/manual.ps.Z doc/manual.txt.Z
+  install -t "$pkgdir/usr/share/licenses/$pkgname/" -Dm755 CopyRight COMMERCIAL_LICENSE REGISTER
 }
-
